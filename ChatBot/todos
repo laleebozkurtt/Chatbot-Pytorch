@@ -1,2 +1,4 @@
 nltk.utils and train belgelerinde kelimeleri tek düze hale getirdik daha sonra da uyumluklarını steamlerini bulduk
-daha sonra model py de->
+Doğal dil işleme(NLP) modeli için veri setini oluşturduk il adımda daha sonra NeuralNet sınıfından yapay sinir ağı modeli oluşturduk.Birkaç işlemin ardından train.py de modelini eğittik
+Flask arayıcılığıyla web uygulaması oluşturdum. Grok API anahtarını kullanarak Groq API ile bağlantı kuruuldu. Eğitilmiş model data.pth dosyasına yüklendi.
+Böyleyece modelin yanıtın ardından Groq API'sine istek gönderir ve yanıtı chatbot yanıtına ekler. Kullanıcıya, modelin veya Groq'dan gelen yanıtını JSON formatında döndürdük.
