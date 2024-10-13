@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        #chat_log { margin-top: 20px; max-height: 400px; overflow-y: auto; }
+        .user { color: blue; }
+        .bot { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <div>
+        <input type="text" id="user_input" placeholder="Type a message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+    <div id="chat_log"></div>
+
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById('user_input').value;
+            const response = await fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: userInput }),
+            });
+            const data = await response.json();
+            const chatLog = document.getElementById('chat_log');
+            chatLog.innerHTML += `<p class="user">You: ${userInput}</p>`;
+            chatLog.innerHTML += `<p class="bot">Bot: ${data.response}</p>`;
+            document.getElementById('user_input').value = '';
+            chatLog.scrollTop = chatLog.scrollHeight;  // Scroll to bottom
+        }
+    </script>
+</body>
+</html>
